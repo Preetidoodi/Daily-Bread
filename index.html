@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Bread - Bible App</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f9f9f9;
+        color: #333;
+    }
+    header {
+        background: #4a7c59;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+    }
+    header h1 {
+        margin: 0;
+    }
+    .container {
+        padding: 20px;
+        max-width: 900px;
+        margin: auto;
+    }
+    .card {
+        background: white;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+        color: #4a7c59;
+    }
+    input, textarea, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        background: #4a7c59;
+        color: white;
+        cursor: pointer;
+        border: none;
+    }
+    button:hover {
+        background: #3b6549;
+    }
+    audio {
+        width: 100%;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>📖 Daily Bread</h1>
+    <p>Your Personal Bible Companion</p>
+</header>
+
+<div class="container">
+
+    <!-- Daily Verse -->
+    <div class="card" id="dailyVerse">
+        <h2>Daily Verse</h2>
+        <p id="verseText">Loading verse...</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="card">
+        <h2>Search Scripture</h2>
+        <input type="text" placeholder="Search for a verse..." id="searchInput">
+        <button onclick="searchVerse()">Search</button>
+        <p id="searchResult"></p>
+    </div>
+
+    <!-- Reading Plans -->
+    <div class="card">
+        <h2>Reading Plans</h2>
+        <ul>
+            <li>📅 30 Days with Jesus</li>
+            <li>📅 Psalms in a Month</li>
+            <li>📅 Proverbs Wisdom Plan</li>
+        </ul>
+    </div>
+
+    <!-- Audio Bible -->
+    <div class="card">
+        <h2>Audio Bible</h2>
+        <audio controls>
+            <source src="sample.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <!-- Prayer Requests -->
+    <div class="card">
+        <h2>Prayer Requests</h2>
+        <textarea id="prayerInput" placeholder="Write your prayer request here..."></textarea>
+        <button onclick="submitPrayer()">Submit</button>
+        <ul id="prayerList"></ul>
+    </div>
+
+</div>
+
+<script>
+    // Daily verse (static examples for now)
+    const verses = [
+        "John 3:16 - For God so loved the world that He gave His only Son...",
+        "Psalm 23:1 - The Lord is my shepherd, I lack nothing.",
+        "Philippians 4:13 - I can do all things through Christ who strengthens me.",
+        "Isaiah 41:10 - Fear not, for I am with you..."
+    ];
+    document.getElementById("verseText").textContent = 
+        verses[Math.floor(Math.random() * verses.length)];
+
+    // Search function (demo)
+    function searchVerse() {
+        let query = document.getElementById("searchInput").value;
+        if(query.trim() === "") {
+            document.getElementById("searchResult").textContent = "Please enter a search term.";
+        } else {
+            document.getElementById("searchResult").textContent = "Searching for: " + query + " (demo)";
+        }
+    }
+
+    // Prayer request submission
+    function submitPrayer() {
+        let prayer = document.getElementById("prayerInput").value;
+        if(prayer.trim() !== "") {
+            let li = document.createElement("li");
+            li.textContent = prayer;
+            document.getElementById("prayerList").appendChild(li);
+            document.getElementById("prayerInput").value = "";
+        }
+    }
+</script>
+
+</body>
+</html>
